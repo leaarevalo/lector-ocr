@@ -92,9 +92,11 @@ export default {
   },
   methods: {
     postImage() {
+      console.log();
+
       if (
-        this.file.imagen.name.includes(".jpg") ||
-        this.file.imagen.name.includes(".png")
+        this.file.imagen.name.split(".")[1] === "png" ||
+        this.file.imagen.name.split(".")[1] === "jpg"
       ) {
         var data = new FormData();
         data.append("language", "eng");
@@ -135,6 +137,8 @@ export default {
       });
     },
     cargarImagen(e) {
+      this.fileResponse = {};
+      this.keywords = [];
       let file = e.target.files[0];
       let reader = new FileReader();
       reader.onload = (e) => {
